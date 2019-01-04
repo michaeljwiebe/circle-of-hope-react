@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import ListItem from './ListItem'
-import SearchBar from './SearchBar'
+// due to list filtering functionality, i think it makes sense to render SearchBar here
+import SearchBar from './SearchBar' 
 
-class List extends Component {
+class ListAndSearch extends Component {
 
     constructor (props) {
         super(props)
@@ -28,7 +29,17 @@ class List extends Component {
     filterList() {
         // let searchVal = new RegExp(this.state.searchText)
         let filteredList = this.props.songs.filter(song => {
-            return song.title.indexOf(this.state.searchText) !== -1
+            let { searchText } = this.state
+            let { title, artist } = song
+            searchText = searchText.toLowerCase()
+            title = title.toLowerCase()
+            artist = artist.toLowerCase()
+            if (
+                title.indexOf(searchText) !== -1 ||
+                artist.indexOf(searchText) !== -1
+            ) {
+                return true
+            } else return false
         })
         this.setState({filteredList})
     }
@@ -44,4 +55,4 @@ class List extends Component {
     }
 }
 
-export default List
+export default ListAndSearch

@@ -7,8 +7,9 @@ class ListItem extends Component {
         }
     }
     render() {
+        let { title, artist } = this.props
         return (
-            <div>{this.props.title}</div>
+            <div>{title} - {artist}</div>
         )
     }
 }
