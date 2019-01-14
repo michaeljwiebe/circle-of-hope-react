@@ -10,7 +10,7 @@ class Songs extends Component {
         let { title, artist, id } = this.props
         return (
             <a href='/songs/{id}'>
-                <div>{title} - SONGS{artist}</div>
+                <div>{title} - {artist}</div>
             </a>
         )
     }

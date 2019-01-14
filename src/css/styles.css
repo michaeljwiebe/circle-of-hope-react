@@ -2,10 +2,10 @@
   display: flex;
   font-size: 20px; }
   .header .logo {
-    width: 30%;
+    width: 300px;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 100px;
+    height: 220px;
     margin: 10px 30px;
     background-image: url("https://3nzlhn3szrqv32oofi2rghef-wpengine.netdna-ssl.com/wp-content/uploads/2017/02/Logo-CoH-300x215.png"); }
   .header .menu {
@@ -13,7 +13,7 @@
     list-style: none;
     width: 70%;
     padding: 0; }
-    .header .menu li {
+    .header .menu a {
       padding: 0 20px; }
 
 /*# sourceMappingURL=styles.css.map */
