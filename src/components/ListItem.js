@@ -9,7 +9,7 @@ class ListItem extends Component {
     render() {
         let { title, artist, id } = this.props
         return (
-            <a href={`/songs/${id}`}> 
+            <a href={`/songs/${id}`} onClick={() => this.props.onClick(this.props)}> 
                 <div>{title} - LISTITEM {artist}</div>
             </a>
         )
