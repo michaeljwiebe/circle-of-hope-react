@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import action creators?
-import { selectSong } from '../redux/actions'
+import { selectSong } from './redux/actions'
 
 import Header from './components/Header'
 import ListAndSearch from './components/ListAndSearch'
