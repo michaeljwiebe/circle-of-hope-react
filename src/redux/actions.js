@@ -1,11 +1,13 @@
 import { SELECT_SONG } from './actionTypes'
 
-export const selectSong = content => ({
-    type: SELECT_SONG,
-    payload: { 
-        content
+export const selectSong = selectedSongId => {
+    return { 
+        type: SELECT_SONG,
+        payload: {
+            selectedSongId
+        }
     }
-})
+}
 
 /*
  * action types

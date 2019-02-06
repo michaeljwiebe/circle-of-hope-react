@@ -23,12 +23,15 @@ export function songs(state = [], action) {
     }
 }
 
-export function selectSong(state = -1, action) {
+export function selectSong(state = { selectedSongId: -1 }, action) {
+    console.log('action type', action.type)
     switch (action.type) {
         case SELECT_SONG:
-        return action.songId
+            return Object.assign({}, state, { 
+                selectedSongId: action.payload.selectedSongId
+            })
         default:
-        return -1
+            return state
     }
 }
 
