@@ -1,10 +1,19 @@
-import { SELECT_SONG } from './actionTypes'
+import { SELECT_SONG, UPDATE_SEARCH } from './actionTypes'
 
 export const selectSong = selectedSongId => {
     return { 
         type: SELECT_SONG,
         payload: {
             selectedSongId
+        }
+    }
+}
+
+export const updateSearch = searchText => {
+    return {
+        type: UPDATE_SEARCH,
+        payload: {
+            searchText
         }
     }
 }

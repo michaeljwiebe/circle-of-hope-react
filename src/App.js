@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import action creators?
-import { selectSong } from './redux/actions'
+import { selectSong, updateSearch } from './redux/actions'
 
 import Header from './components/Header'
 import ListAndSearch from './components/ListAndSearch'
@@ -10,44 +10,68 @@ import Song from './components/Song'
 
 class App extends Component {
 
+    constructor (props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
     handleSelectSong = songId => {
         this.props.selectSong(songId) // this is calling the action but it is not entering into the state
     }
-
+    
+    handleUpdateSearch = searchText => {
+        this.props.updateSearch(searchText)
+    }
+    
     render () {
-        let { selectedSongId } = this.props
         console.log('this.props', this.props)
-
-        return(
-            <Router>
-                <div>
-                    <Header />
-                    <Route 
-                        exact path='/' 
-                        component={(props) => <ListAndSearch {...props} songs={songs} onClick={this.handleSelectSong} />} 
-                    />
-                    <Route 
-                        path={`/songs/${selectedSongId}`}
-                        // path={`/songs/4`}
-                        component={props => <Song {...props} selectedSongId={selectedSongId} />} 
-                    />
+        let { selectedSongId } = this.props
+        let song = songs.find((song) => song.id === selectedSongId)
+        let songRender = null
+        if (selectedSongId > -1) {
+            songRender = <Song songData={song} />
+        }
+        return (
+            <div style={ appContainerStyles }>
+                <Header />
+                <div style={ flexContainer }> 
+                    <div style={ filterContainerStyles }> FILTERS </div>
+                    <div style={ bodyContainerStyles }>
+                        <ListAndSearch 
+                            {...this.props} 
+                            songs={songs} 
+                            onClick={this.handleSelectSong} 
+                            onSearch={this.handleUpdateSearch} 
+                            />
+                        { songRender }
+                    </div>
                 </div>
-            </Router>
+            </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        selectedSong: state.selectedSong
-    }
+const appContainerStyles = {
+    margin: '0 auto',
+    maxWidth: '1200px',
 }
 
-const mapDispatchToProps = {
-    selectSong
+const filterContainerStyles = {
+    width: '100px'
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+const flexContainer = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    margin: '30px'
+
+}
+
+const bodyContainerStyles = {
+
+}
 
 let songs = [{
     title: 'one',
@@ -75,6 +99,50 @@ let songs = [{
     lyrics: 'My Christian friends, in bonds of love, Whose hearts in sweetest union join, Your friendship’s like a drawing band, Yet we must take the parting hand. Your company’s sweet, your union dear, Your words delightful to my ear; Yet when I see that we must part You draw like cords around my heart.',
     id: '55'
 }]
+
+
+const mapStateToProps = (state, ownProps) => {
+    console.log('mapState', state)
+    return {
+        selectedSongId: state.selectSong.selectedSongId
+    }
+}
+
+const mapDispatchToProps = {
+    selectSong,
+    updateSearch
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+    // render () {
+    //     let { selectedSongId } = this.props
+    //     console.log('this.props', this.props)
+
+    //     return(
+    //         <Router>
+    //             <div>
+    //                 <Header />
+    //                 <Route 
+    //                     exact path='/' 
+    //                     component={(props) => (
+    //                         <ListAndSearch 
+    //                             {...props} 
+    //                             songs={songs} 
+    //                             onClick={this.handleSelectSong} 
+    //                             onSearch={this.handleUpdateSearch} />
+    //                     )}
+    //                 />
+    //                 <Route 
+    //                     path={`/songs/${selectedSongId}`}
+    //                     // path={`/songs/4`}
+    //                     component={props => <Song {...props} selectedSongId={selectedSongId} />} 
+    //                 />
+    //             </div>
+    //         </Router>
+    //     )
+    // }
+
 
 /*
 *   Authentication - db connection?

@@ -1,7 +1,8 @@
 import { 
     SELECT_SONG, 
     ADD_SONG, 
-    APPLY_FILTER 
+    APPLY_FILTER, 
+    UPDATE_SEARCH
 } from './actionTypes'
 
 // const initialState = {
@@ -24,12 +25,20 @@ export function songs(state = [], action) {
 }
 
 export function selectSong(state = { selectedSongId: -1 }, action) {
-    console.log('action type', action.type)
     switch (action.type) {
         case SELECT_SONG:
             return Object.assign({}, state, { 
                 selectedSongId: action.payload.selectedSongId
             })
+        default:
+            return state
+    }
+}
+
+export function updateSearch(state = { searchText: '' }, action) {
+    switch (action.type) {
+        case UPDATE_SEARCH:
+            return { ...state, searchText: action.payload.searchText }
         default:
             return state
     }

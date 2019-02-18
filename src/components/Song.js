@@ -7,11 +7,10 @@ class Song extends Component {
     //     }
     // }
     render() {
-        console.log('SONG LOADED')
-        let { title, artist, lyrics } = this.props.selectedSong
+        let { title, artist, lyrics } = this.props.songData
         return (
-                <div>
-                    <div>{title} - SONGS{artist}</div>
+                <div >
+                    <div>{title} - {artist}</div>
                     <div>{lyrics}</div>
                 </div>
         )

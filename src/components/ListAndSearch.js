@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import ListItem from './ListItem'
 // due to list filtering functionality, i think it makes sense to render SearchBar here
-import SearchBar from './SearchBar' 
+import SearchBar from './SearchBar'
+
+import { selectSong, updateSearch } from '../redux/actions'
 
 class ListAndSearch extends Component {
 
     constructor (props) {
         super(props)
         this.state = {
-            searchText: '',
             filteredList: []
         }
     }
@@ -21,14 +24,16 @@ class ListAndSearch extends Component {
         })
     }
 
-    onSearch(ev) {
-        this.setState({searchText: ev.target.value})
+    onSearch(text) {
+        // this.setState({searchText: ev.target.value})
+        this.props.onSearch(text)
         this.filterList()
     }
 
     filterList() {
+        console.log('this.props', this.props)
         let filteredList = this.props.songs.filter(song => {
-            let { searchText } = this.state
+            let { searchText } = this.props
             let { title, artist } = song
             searchText = searchText.toLowerCase()
             title = title.toLowerCase()
@@ -54,4 +59,15 @@ class ListAndSearch extends Component {
     }
 }
 
-export default ListAndSearch
+const mapStateToProps = (state, ownProps) => {
+    return {
+        selectedSong: state.selectedSong
+    }
+}
+
+const mapDispatchToProps = {
+    selectSong,
+    updateSearch
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListAndSearch)
