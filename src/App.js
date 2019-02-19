@@ -38,7 +38,7 @@ class App extends Component {
                 <Header />
                 <div style={ flexContainer }> 
                     <div style={ filterContainerStyles }> FILTERS </div>
-                    <div style={ bodyContainerStyles }>
+                    <div style={ listAndSongContainer }>
                         <ListAndSearch 
                             {...this.props} 
                             songs={songs} 
@@ -66,12 +66,28 @@ const flexContainer = {
     display: 'flex',
     justifyContent: 'space-evenly',
     margin: '30px'
-
 }
 
-const bodyContainerStyles = {
-
+const listAndSongContainer = {
+    width: '90%',
+    minWidth: '700px'
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+    // console.log('mapState', state)
+    return {
+        selectedSongId: state.selectSong.selectedSongId,
+        searchText: state.updateSearch.searchText
+    }
+}
+
+const mapDispatchToProps = {
+    selectSong,
+    updateSearch
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 let songs = [{
     title: 'one',
@@ -101,19 +117,6 @@ let songs = [{
 }]
 
 
-const mapStateToProps = (state, ownProps) => {
-    console.log('mapState', state)
-    return {
-        selectedSongId: state.selectSong.selectedSongId
-    }
-}
-
-const mapDispatchToProps = {
-    selectSong,
-    updateSearch
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
 
     // render () {
     //     let { selectedSongId } = this.props

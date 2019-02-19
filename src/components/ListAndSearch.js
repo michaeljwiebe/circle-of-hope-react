@@ -18,7 +18,7 @@ class ListAndSearch extends Component {
 
     renderList() {
         let songs = this.props.songs
-        if (this.state.searchText) songs = this.state.filteredList
+        if (this.props.searchText) songs = this.state.filteredList
         return songs.map(song => {
             return <ListItem {...song} key={song.id} onClick={this.props.onClick} />
         })
@@ -34,12 +34,14 @@ class ListAndSearch extends Component {
         console.log('this.props', this.props)
         let filteredList = this.props.songs.filter(song => {
             let { searchText } = this.props
-            let { title, artist } = song
+            let { title, artist, lyrics } = song
             searchText = searchText.toLowerCase()
             title = title.toLowerCase()
             artist = artist.toLowerCase()
+            lyrics = lyrics.toLowerCase()
             if (
                 title.indexOf(searchText) !== -1 ||
+                lyrics.indexOf(searchText) !== -1 ||
                 artist.indexOf(searchText) !== -1
             ) {
                 return true
@@ -60,6 +62,7 @@ class ListAndSearch extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    console.log('list state', state)
     return {
         selectedSong: state.selectedSong
     }
