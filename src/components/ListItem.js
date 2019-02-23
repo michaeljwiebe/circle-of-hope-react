@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { selectSong } from '../redux/actions'
 
 class ListItem extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-        }
-    }
+
     render() {
         let { title, artist, id } = this.props
         return (
-            <div onClick={() => this.props.onClick(id)}>{title} - LISTITEM {artist}</div>
+            <div 
+                onClick={() => this.props.selectSong(id)}>
+                {title} - LISTITEM {artist}
+            </div>
         )
     }
 }
 
-export default ListItem
+export default connect(null, { selectSong })(ListItem)

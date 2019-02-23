@@ -16,10 +16,6 @@ class App extends Component {
 
         }
     }
-
-    handleSelectSong = songId => {
-        this.props.selectSong(songId) // this is calling the action but it is not entering into the state
-    }
     
     handleUpdateSearch = searchText => {
         this.props.updateSearch(searchText)
@@ -42,7 +38,6 @@ class App extends Component {
                         <ListAndSearch 
                             {...this.props} 
                             songs={songs} 
-                            onClick={this.handleSelectSong} 
                             onSearch={this.handleUpdateSearch} 
                             />
                         { songRender }
@@ -109,7 +104,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-    selectSong,
     updateSearch
 }
 

@@ -5,7 +5,7 @@ import ListItem from './ListItem'
 // due to list filtering functionality, i think it makes sense to render SearchBar here
 import SearchBar from './SearchBar'
 
-import { selectSong, updateSearch } from '../redux/actions'
+import { updateSearch } from '../redux/actions'
 
 class ListAndSearch extends Component {
 
@@ -20,15 +20,15 @@ class ListAndSearch extends Component {
         let songs = this.props.songs
         if (this.state.searchText) songs = this.state.filteredList
         return songs.map(song => {
-            return <ListItem {...song} key={song.id} onClick={this.props.onClick} />
+            return <ListItem {...song} key={song.id} />
         })
     }
 
-    onSearch(text) {
-        // this.setState({searchText: ev.target.value})
-        this.props.onSearch(text)
-        this.filterList()
-    }
+    // onSearch(text) {
+    //     // this.setState({searchText: ev.target.value})
+    //     this.props.onSearch(text)
+    //     this.filterList()
+    // }
 
     filterList() {
         console.log('this.props', this.props)
@@ -52,7 +52,8 @@ class ListAndSearch extends Component {
         let list = this.renderList()
         return (
             <div>
-                <SearchBar onChange={this.onSearch.bind(this)}/>
+                <SearchBar />
+                {/* <SearchBar onChange={this.onSearch.bind(this)}/> */}
                 <div>{list}</div>
             </div>
         )
@@ -60,13 +61,15 @@ class ListAndSearch extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    const { searchText } = state.updateSearch
+    const { selectedSong } = state.selectSong
     return {
-        selectedSong: state.selectedSong
+        selectedSong,
+        searchText
     }
 }
 
 const mapDispatchToProps = {
-    selectSong,
     updateSearch
 }
 
