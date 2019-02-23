@@ -34,7 +34,7 @@ class App extends Component {
                 <Header />
                 <div style={ flexContainer }> 
                     <div style={ filterContainerStyles }> FILTERS </div>
-                    <div style={ bodyContainerStyles }>
+                    <div style={ listAndSongContainer }>
                         <ListAndSearch 
                             {...this.props} 
                             songs={songs} 
@@ -61,12 +61,28 @@ const flexContainer = {
     display: 'flex',
     justifyContent: 'space-evenly',
     margin: '30px'
-
 }
 
-const bodyContainerStyles = {
-
+const listAndSongContainer = {
+    width: '90%',
+    minWidth: '700px'
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+    // console.log('mapState', state)
+    return {
+        selectedSongId: state.selectSong.selectedSongId,
+        searchText: state.updateSearch.searchText
+    }
+}
+
+const mapDispatchToProps = {
+    selectSong,
+    updateSearch
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 let songs = [{
     title: 'one',
@@ -94,20 +110,6 @@ let songs = [{
     lyrics: 'My Christian friends, in bonds of love, Whose hearts in sweetest union join, Your friendship’s like a drawing band, Yet we must take the parting hand. Your company’s sweet, your union dear, Your words delightful to my ear; Yet when I see that we must part You draw like cords around my heart.',
     id: '55'
 }]
-
-
-const mapStateToProps = (state, ownProps) => {
-    console.log('mapState', state)
-    return {
-        selectedSongId: state.selectSong.selectedSongId
-    }
-}
-
-const mapDispatchToProps = {
-    updateSearch
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
 
     // render () {
     //     let { selectedSongId } = this.props
