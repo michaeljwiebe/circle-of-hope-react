@@ -1,7 +1,7 @@
 import { 
     SELECT_SONG, 
     ADD_SONG, 
-    APPLY_FILTER, 
+    UPDATE_FILTER, 
     UPDATE_SEARCH
 } from './actionTypes'
 
@@ -44,9 +44,19 @@ export function updateSearch(state = { searchText: '' }, action) {
     }
 }
 
-export function filters(state = {}, action) {
+const initialFilters = {
+    "English": false,
+    "Non-English": false,
+    "Fast": false,
+    "Slow": false,
+    "Meditative": false,
+    "Poetic": false
+}
+
+export function filters(state = initialFilters, action) {
+    console.log(action)
     switch (action.type) {
-        case APPLY_FILTER:
+        case UPDATE_FILTER:
             return Object.assign({}, state, {
                 [action.filter]: !state[action.filter]
             })

@@ -16,8 +16,10 @@ class List extends Component {
 
     renderList() {
         // let songs = this.props.songs
-        let { songs, searchText } = this.props
-        if (searchText) {
+        let { songs, searchText, filters } = this.props
+        let trueFilters = Object.keys(filters).filter(f => filters[f])
+        console.log('trueFilters', trueFilters)
+        if (searchText || trueFilters.length) {
             songs = this.filterList()
         }
         return songs.map(song => {
@@ -26,7 +28,22 @@ class List extends Component {
     }
 
     filterList() {
-        let filteredList = this.props.songs.filter(song => {
+        let filtersSet = []
+        Object.keys(this.props.filters).map(f => {
+            if (this.props.filters[f]) filtersSet.push(f)
+        })
+        // apply filters
+        let filteredList = this.props.songs
+        if (filtersSet.length) {
+            filteredList = filteredList.filter(song => {
+                for (let i = 0; i < song.tags.length; i++) {
+                    if (filtersSet.indexOf(song.tags[i]) !== -1) return true
+                }
+            })
+        }
+
+        // apply searchText
+        filteredList = filteredList.filter(song => {
             let { searchText } = this.props
             let { title, artist, lyrics } = song
             searchText = searchText.toLowerCase()
@@ -55,9 +72,11 @@ class List extends Component {
 const mapStateToProps = (state, ownProps) => {
     const { searchText } = state.updateSearch
     const { selectedSong } = state.selectSong
+    const { filters } = state
     return {
         selectedSong,
-        searchText
+        searchText,
+        filters
     }
 }
 
