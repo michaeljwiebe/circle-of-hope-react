@@ -36,9 +36,11 @@ class List extends Component {
         let filteredList = this.props.songs
         if (filtersSet.length) {
             filteredList = filteredList.filter(song => {
+                let matches = 0
                 for (let i = 0; i < song.tags.length; i++) {
-                    if (filtersSet.indexOf(song.tags[i]) !== -1) return true
+                    if (filtersSet.indexOf(song.tags[i]) !== -1) matches++
                 }
+                if (matches === filtersSet.length) return true
             })
         }
 
@@ -56,7 +58,7 @@ class List extends Component {
                 artist.indexOf(searchText) !== -1
             ) {
                 return true
-            } else return false
+            }
         })
         return filteredList
     }
