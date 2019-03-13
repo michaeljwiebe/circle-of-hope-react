@@ -35,7 +35,6 @@ class App extends Component {
                         <Filters />
                     </div>
                     <div style={ listAndSongContainer }>
-
                         <SearchBar />
                         <List 
                             {...this.props} 
@@ -71,7 +70,6 @@ const listAndSongContainer = {
 
 
 const mapStateToProps = (state, ownProps) => {
-    // console.log('mapState', state)
     return {
         selectedSongId: state.selectSong.selectedSongId,
         searchText: state.updateSearch.searchText
@@ -145,35 +143,6 @@ let songs = [{
     ],
     languages: ['Spanish']
 }]
-
-    // render () {
-    //     let { selectedSongId } = this.props
-    //     console.log('this.props', this.props)
-
-    //     return(
-    //         <Router>
-    //             <div>
-    //                 <Header />
-    //                 <Route 
-    //                     exact path='/' 
-    //                     component={(props) => (
-    //                         <List 
-    //                             {...props} 
-    //                             songs={songs} 
-    //                             onClick={this.handleSelectSong} 
-    //                             onSearch={this.handleUpdateSearch} />
-    //                     )}
-    //                 />
-    //                 <Route 
-    //                     path={`/songs/${selectedSongId}`}
-    //                     // path={`/songs/4`}
-    //                     component={props => <Song {...props} selectedSongId={selectedSongId} />} 
-    //                 />
-    //             </div>
-    //         </Router>
-    //     )
-    // }
-
 
 /*
 *   Authentication - db connection?

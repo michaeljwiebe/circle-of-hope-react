@@ -9,7 +9,7 @@ class ListItem extends Component {
         return (
             <div 
                 onClick={() => this.props.selectSong(id)}>
-                {title} - LISTITEM {artist}
+                {title} - {artist}
             </div>
         )
     }

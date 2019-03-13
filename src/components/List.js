@@ -10,7 +10,6 @@ class List extends Component {
 
     renderList() {
         let { songs, searchText, filters } = this.props
-        // let { trueFilters } = this.getFilters()
         let { trueFilters } = getTrueFilters(filters)
         if (searchText || trueFilters.length) {
             songs = this.filterList(trueFilters)
@@ -22,10 +21,8 @@ class List extends Component {
 
     filterList(trueFilters) {
 
-        // apply filters
-        console.log(this.props.songs.length)
+        // apply checked filters
         let filteredList = this.props.songs
-        console.log(trueFilters)
         if (trueFilters.length) {
             filteredList = filteredList.filter(song => {
                 let matches = 0
@@ -43,7 +40,7 @@ class List extends Component {
             })
         }
 
-        // apply searchText
+        // apply searchText filter
         filteredList = filteredList.filter(song => {
             let { searchText } = this.props
             let { title, artist, lyrics } = song
