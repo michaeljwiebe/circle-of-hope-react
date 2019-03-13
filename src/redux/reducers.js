@@ -1,7 +1,9 @@
 import { 
     SELECT_SONG, 
     ADD_SONG, 
-    UPDATE_FILTER, 
+    UPDATE_CHARS_FILTERS, 
+    UPDATE_LOCATIONS_FILTERS, 
+    UPDATE_LANGUAGES_FILTERS, 
     UPDATE_SEARCH
 } from './actionTypes'
 
@@ -45,20 +47,50 @@ export function updateSearch(state = { searchText: '' }, action) {
 }
 
 const initialFilters = {
-    "English": false,
-    "Non-English": false,
-    "Fast": false,
-    "Slow": false,
-    "Meditative": false,
-    "Poetic": false
+    languages: {
+        "English": false,
+        "Hebrew": false,
+        "Arabic": false,
+        "French": false,
+        "Spanish": false
+    },
+    characteristics: {
+        "Fast": false,
+        "Slow": false,
+        "Meditative": false,
+        "Poetic": false,
+        "Traditional": false
+    },
+    locations: {
+        'Fishtown/Kensington': false,
+        'South Broad': false,
+        'Ridge Ave': false,
+        'Marlton': false
+    }
 }
 
 export function filters(state = initialFilters, action) {
-    console.log(action)
     switch (action.type) {
-        case UPDATE_FILTER:
+        case UPDATE_CHARS_FILTERS:
             return Object.assign({}, state, {
-                [action.filter]: !state[action.filter]
+                characteristics: {
+                    ...state.characteristics,
+                    [action.filter]: !state.characteristics[action.filter]
+                }
+            })
+        case UPDATE_LOCATIONS_FILTERS:
+            return Object.assign({}, state, {
+                locations: {
+                    ...state.locations,
+                    [action.filter]: !state.locations[action.filter]
+                }
+            })
+        case UPDATE_LANGUAGES_FILTERS:
+            return Object.assign({}, state, {
+                languages: {
+                    ...state.languages,
+                    [action.filter]: !state.languages[action.filter]
+                }
             })
         default:
             return state

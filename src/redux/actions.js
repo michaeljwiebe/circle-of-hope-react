@@ -1,7 +1,9 @@
 import { 
     SELECT_SONG, 
     UPDATE_SEARCH,
-    UPDATE_FILTER
+    UPDATE_CHARS_FILTERS,
+    UPDATE_LOCATIONS_FILTERS,
+    UPDATE_LANGUAGES_FILTERS,
 } from './actionTypes'
 
 export const selectSong = selectedSongId => {
@@ -22,9 +24,23 @@ export const updateSearch = searchText => {
     }
 }
 
-export const updateFilters = filter => {
+export const updateCharacteristicsFilters = filter => {
     return {
-        type: UPDATE_FILTER,
+        type: UPDATE_CHARS_FILTERS,
+        filter
+    }
+}
+
+export const updateLocationsFilters = filter => {
+    return {
+        type: UPDATE_LOCATIONS_FILTERS,
+        filter
+    }
+}
+
+export const updateLanguagesFilters = filter => {
+    return {
+        type: UPDATE_LANGUAGES_FILTERS,
         filter
     }
 }

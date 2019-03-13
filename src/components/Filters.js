@@ -1,29 +1,67 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { updateFilters } from '../redux/actions'
+import { 
+    updateCharacteristicsFilters,
+    updateLocationsFilters,
+    updateLanguagesFilters
+ } from '../redux/actions'
 
 class Filters extends Component {
 
+
     render () {
-        let filterKeys = Object.keys(this.props.filters)
-        let filters = filterKeys.map(f => {
-            return <div key={f}>
-                <input 
-                    type="checkbox" 
-                    value={this.props.filters[f]}
-                    onClick={evt => this.props.updateFilters(f)} 
-                /> {f}
-            </div>
+        let { 
+            updateCharacteristicsFilters,
+            updateLanguagesFilters,
+            updateLocationsFilters,
+            filters
+        } = this.props
+        let filterGroups = Object.keys(filters)
+        let filtersHTML = filterGroups.map(group => {
+            let action;
+            if (group === 'characteristics') action = updateCharacteristicsFilters
+            else if (group === 'languages') action = updateLanguagesFilters
+            else if (group === 'locations') action = updateLocationsFilters
+            let filterGroupHTML = Object.keys(filters[group]).map(key => {
+                return (
+                    <div key={key}>
+                        <input
+                            type="checkbox"
+                            value={filters[group][key]}
+                            onClick={evt => action(key)}
+                        /> {key}
+                    </div>
+                )
+            })
+            return (
+                <div className="filterGroup">
+                    <div className="title">{group}</div>
+                    <div className="filters">
+                        {filterGroupHTML}
+                    </div>
+                </div>
+            )
         })
 
         return (
             <div>
-                { filters }
+                { filtersHTML }
             </div>
         )
     }
 
+}
+
+export const getTrueFilters = (filters) => {
+    let trueFilters = []
+    let filterTypes = Object.keys(filters)
+    filterTypes.map(type => {
+        Object.keys(filters[type]).map(filter => {
+            if (filters[type][filter]) trueFilters.push(filter)
+        })
+    })
+    return { trueFilters }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -33,7 +71,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-    updateFilters
+    updateCharacteristicsFilters,
+    updateLocationsFilters,
+    updateLanguagesFilters
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters)

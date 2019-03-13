@@ -2,45 +2,44 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import ListItem from './ListItem'
+import { getTrueFilters } from './Filters'
 
 import { updateSearch } from '../redux/actions'
 
 class List extends Component {
 
-    // constructor (props) {
-    //     super(props)
-    //     this.state = {
-    //         filteredList: []
-    //     }
-    // }
-
     renderList() {
-        // let songs = this.props.songs
         let { songs, searchText, filters } = this.props
-        let trueFilters = Object.keys(filters).filter(f => filters[f])
-        console.log('trueFilters', trueFilters)
+        // let { trueFilters } = this.getFilters()
+        let { trueFilters } = getTrueFilters(filters)
         if (searchText || trueFilters.length) {
-            songs = this.filterList()
+            songs = this.filterList(trueFilters)
         }
         return songs.map(song => {
             return <ListItem {...song} key={song.id} />
         })
     }
 
-    filterList() {
-        let filtersSet = []
-        Object.keys(this.props.filters).map(f => {
-            if (this.props.filters[f]) filtersSet.push(f)
-        })
+    filterList(trueFilters) {
+
         // apply filters
+        console.log(this.props.songs.length)
         let filteredList = this.props.songs
-        if (filtersSet.length) {
+        console.log(trueFilters)
+        if (trueFilters.length) {
             filteredList = filteredList.filter(song => {
                 let matches = 0
-                for (let i = 0; i < song.tags.length; i++) {
-                    if (filtersSet.indexOf(song.tags[i]) !== -1) matches++
+                for (let i = 0; i < song.characteristics.length; i++) {
+                    if (
+                        trueFilters.indexOf(song.characteristics[i]) !== -1 ||
+                        trueFilters.indexOf(song.languages[i]) !== -1 ||
+                        trueFilters.indexOf(song.locations[i]) !== -1
+                    ) {
+                        matches++
+                    }
                 }
-                if (matches === filtersSet.length) return true
+                if (matches > 0) return true
+                else return false
             })
         }
 
