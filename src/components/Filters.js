@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { 
-    updateCharacteristicsFilters,
+    updateStylesFilters,
     updateLocationsFilters,
     updateLanguagesFilters
  } from '../redux/actions'
@@ -12,7 +12,7 @@ class Filters extends Component {
 
     render () {
         let { 
-            updateCharacteristicsFilters,
+            updateStylesFilters,
             updateLanguagesFilters,
             updateLocationsFilters,
             filters
@@ -20,7 +20,7 @@ class Filters extends Component {
         let filterGroups = Object.keys(filters)
         let filtersHTML = filterGroups.map(group => {
             let action;
-            if (group === 'characteristics') action = updateCharacteristicsFilters
+            if (group === 'styles') action = updateStylesFilters
             else if (group === 'languages') action = updateLanguagesFilters
             else if (group === 'locations') action = updateLocationsFilters
             let filterGroupHTML = Object.keys(filters[group]).map(key => {
@@ -71,7 +71,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-    updateCharacteristicsFilters,
+    updateStylesFilters,
     updateLocationsFilters,
     updateLanguagesFilters
 }

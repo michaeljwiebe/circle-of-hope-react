@@ -1,7 +1,7 @@
 import { 
     SELECT_SONG, 
     UPDATE_SEARCH,
-    UPDATE_CHARS_FILTERS,
+    UPDATE_STYLES_FILTERS,
     UPDATE_LOCATIONS_FILTERS,
     UPDATE_LANGUAGES_FILTERS,
 } from './actionTypes'
@@ -24,9 +24,9 @@ export const updateSearch = searchText => {
     }
 }
 
-export const updateCharacteristicsFilters = filter => {
+export const updateStylesFilters = filter => {
     return {
-        type: UPDATE_CHARS_FILTERS,
+        type: UPDATE_STYLES_FILTERS,
         filter
     }
 }

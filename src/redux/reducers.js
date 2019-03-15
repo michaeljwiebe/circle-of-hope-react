@@ -1,7 +1,7 @@
 import { 
     SELECT_SONG, 
     ADD_SONG, 
-    UPDATE_CHARS_FILTERS, 
+    UPDATE_STYLES_FILTERS, 
     UPDATE_LOCATIONS_FILTERS, 
     UPDATE_LANGUAGES_FILTERS, 
     UPDATE_SEARCH
@@ -54,7 +54,7 @@ const initialFilters = {
         "French": false,
         "Spanish": false
     },
-    characteristics: {
+    styles: {
         "Fast": false,
         "Slow": false,
         "Meditative": false,
@@ -70,12 +70,13 @@ const initialFilters = {
 }
 
 export function filters(state = initialFilters, action) {
+    // console.log('action.type', action.type)
     switch (action.type) {
-        case UPDATE_CHARS_FILTERS:
+        case UPDATE_STYLES_FILTERS:
             return Object.assign({}, state, {
-                characteristics: {
-                    ...state.characteristics,
-                    [action.filter]: !state.characteristics[action.filter]
+                styles: {
+                    ...state.styles,
+                    [action.filter]: !state.styles[action.filter]
                 }
             })
         case UPDATE_LOCATIONS_FILTERS:

@@ -1,3 +1,21 @@
+This project will provide access to the Circle of Hope Music Database currently available at [music.circleofhope.net](music.circleofhope.net). This project will modernize the frontend, improve the UI, and add features such as:
+
+*   Authentication
+*   make filter types collapsable, add country, season, and style
+*   Sign up form and profile builder
+*   setlist component 
+    -   Allow users to create new setlists with their choice of songs
+    -   Visible to other users
+*   song component
+    -   lyrics, music, link to google doc, picture, youtube iframe, setlist count
+*   song edits
+    -   save separate versions of songs
+    -   propose merging changes to original
+*   song submissions
+*   profile 
+    - songs edited, recordings submitted, new songs submitted, setlists saved
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

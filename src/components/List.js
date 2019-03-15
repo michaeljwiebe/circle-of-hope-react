@@ -19,23 +19,26 @@ class List extends Component {
         })
     }
 
-    filterList(trueFilters) {
-
+    filterList(trueFilters, matchAll = false) {
+        console.log(this.props.songs.length)
+        
         // apply checked filters
         let filteredList = this.props.songs
         if (trueFilters.length) {
             filteredList = filteredList.filter(song => {
+                console.log('filtering')
                 let matches = 0
-                for (let i = 0; i < song.characteristics.length; i++) {
-                    if (
-                        trueFilters.indexOf(song.characteristics[i]) !== -1 ||
-                        trueFilters.indexOf(song.languages[i]) !== -1 ||
-                        trueFilters.indexOf(song.locations[i]) !== -1
-                    ) {
-                        matches++
-                    }
-                }
-                if (matches > 0) return true
+                let songTags = Object.keys(song.tags) // get tag categories
+                songTags.forEach(tag => {
+                    song.tags[tag].forEach(key => { // get tag category keys
+                        trueFilters.forEach(filter => { // cycle through true filters and find matches to key
+                            if (filter === key) matches++
+                        })
+                    })
+                })
+                if (matchAll) {
+                    if (matches === trueFilters.length) return true // return songs that match all filters
+                } else if (matches > 0) return true // return songs that match any filters
                 else return false
             })
         }
@@ -56,6 +59,7 @@ class List extends Component {
                 return true
             }
         })
+        console.log(filteredList)
         return filteredList
     }
 
