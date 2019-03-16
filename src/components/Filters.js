@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { 
     updateStylesFilters,
     updateLocationsFilters,
-    updateLanguagesFilters
+    updateLanguagesFilters,
+    updateMatchingOption
  } from '../redux/actions'
 
 class Filters extends Component {
@@ -15,6 +16,7 @@ class Filters extends Component {
             updateStylesFilters,
             updateLanguagesFilters,
             updateLocationsFilters,
+            updateMatchingOption,
             filters
         } = this.props
         let filterGroups = Object.keys(filters)
@@ -23,6 +25,7 @@ class Filters extends Component {
             if (group === 'styles') action = updateStylesFilters
             else if (group === 'languages') action = updateLanguagesFilters
             else if (group === 'locations') action = updateLocationsFilters
+            else if (group === 'matchAll') return false // prevents this from becoming a title
             let filterGroupHTML = Object.keys(filters[group]).map(key => {
                 return (
                     <div key={key}>
@@ -45,8 +48,20 @@ class Filters extends Component {
         })
 
         return (
-            <div>
+            <div style={filterStyles.container}>
                 { filtersHTML }
+                <div className="matchAllBox" style={filterStyles.matchAll}>
+                    <div className="title"></div>
+                    <div className="filters">
+                        <div key="matchAll">
+                            <input
+                                type="checkbox"
+                                value={filters.matchAll}
+                                onClick={evt => updateMatchingOption()}
+                            /> Match All Filters
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -64,6 +79,13 @@ export const getTrueFilters = (filters) => {
     return { trueFilters }
 }
 
+
+const filterStyles = {
+    container: { width: '200px' },
+    matchAll: { marginTop: '30px' }
+}
+
+
 const mapStateToProps = (state, ownProps) => {
     return {
         filters: state.filters
@@ -73,7 +95,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     updateStylesFilters,
     updateLocationsFilters,
-    updateLanguagesFilters
+    updateLanguagesFilters,
+    updateMatchingOption
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters)

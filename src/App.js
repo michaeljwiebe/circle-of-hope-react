@@ -31,7 +31,7 @@ class App extends Component {
             <div style={ appContainerStyles }>
                 <Header />
                 <div style={ flexContainer }> 
-                    <div style={ filterContainerStyles }>
+                    <div>
                         <Filters />
                     </div>
                     <div style={ listAndSongContainer }>
@@ -51,10 +51,6 @@ class App extends Component {
 const appContainerStyles = {
     margin: '0 auto',
     maxWidth: '1200px',
-}
-
-const filterContainerStyles = {
-    width: '200px'
 }
 
 const flexContainer = {

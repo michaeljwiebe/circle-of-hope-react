@@ -4,6 +4,7 @@ import {
     UPDATE_STYLES_FILTERS,
     UPDATE_LOCATIONS_FILTERS,
     UPDATE_LANGUAGES_FILTERS,
+    UPDATE_MATCHING_OPTION
 } from './actionTypes'
 
 export const selectSong = selectedSongId => {
@@ -42,6 +43,12 @@ export const updateLanguagesFilters = filter => {
     return {
         type: UPDATE_LANGUAGES_FILTERS,
         filter
+    }
+}
+
+export const updateMatchingOption = () => {
+    return {
+        type: UPDATE_MATCHING_OPTION
     }
 }
 

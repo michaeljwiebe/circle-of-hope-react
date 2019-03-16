@@ -10,9 +10,11 @@ class List extends Component {
 
     renderList() {
         let { songs, searchText, filters } = this.props
+        const { matchAll } = filters
+        console.log(matchAll)
         let { trueFilters } = getTrueFilters(filters)
         if (searchText || trueFilters.length) {
-            songs = this.filterList(trueFilters)
+            songs = this.filterList(trueFilters, matchAll)
         }
         return songs.map(song => {
             return <ListItem {...song} key={song.id} />
@@ -20,13 +22,10 @@ class List extends Component {
     }
 
     filterList(trueFilters, matchAll = false) {
-        console.log(this.props.songs.length)
-        
         // apply checked filters
         let filteredList = this.props.songs
         if (trueFilters.length) {
             filteredList = filteredList.filter(song => {
-                console.log('filtering')
                 let matches = 0
                 let songTags = Object.keys(song.tags) // get tag categories
                 songTags.forEach(tag => {
