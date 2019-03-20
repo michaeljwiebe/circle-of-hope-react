@@ -26,6 +26,7 @@ class Filters extends Component {
             else if (group === 'languages') action = updateLanguagesFilters
             else if (group === 'locations') action = updateLocationsFilters
             else if (group === 'matchAll') return false // prevents this from becoming a title
+            
             let filterGroupHTML = Object.keys(filters[group]).map(key => {
                 return (
                     <div key={key}>
@@ -33,12 +34,15 @@ class Filters extends Component {
                             type="checkbox"
                             value={filters[group][key]}
                             onClick={evt => action(key)}
-                        /> {key}
+                            /> {key}
                     </div>
                 )
             })
+            let titleFirstLetter = group.slice(0,1).toUpperCase()
+            group = group.split('')
+            group.splice(0,1, titleFirstLetter)
             return (
-                <div className="filterGroup">
+                <div className="filterGroup" key={group}>
                     <div className="title">{group}</div>
                     <div className="filters">
                         {filterGroupHTML}
