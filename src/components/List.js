@@ -14,7 +14,6 @@ class List extends Component {
         if (searchText || trueFilters.length) {
             songs = this.filterList(trueFilters)
         }
-        console.log('songs.length', songs.length)
         return songs.map(song => {
             return <ListItem {...song} key={song.id} />
         })
@@ -22,7 +21,7 @@ class List extends Component {
     
     filterList(trueFilters) {
         // apply checked filters
-        const { matchAll } = this.props.filters
+        const { matchAll } = this.props.filters.options
         let filteredList = this.props.songs
         if (trueFilters.length) {
             filteredList = filteredList.filter(song => {
@@ -58,7 +57,6 @@ class List extends Component {
                 return true
             }
         })
-        console.log(filteredList)
         return filteredList
     }
 

@@ -5,7 +5,8 @@ import {
     UPDATE_LOCATIONS_FILTERS, 
     UPDATE_LANGUAGES_FILTERS, 
     UPDATE_SEARCH,
-    UPDATE_MATCHING_OPTION
+    UPDATE_MATCHING_OPTION,
+    EXPAND_FILTER_GROUP
 } from './actionTypes'
 
 // const initialState = {
@@ -68,7 +69,12 @@ const initialFilters = {
         'Ridge Ave': false,
         'Marlton': false
     },
-    matchAll: false
+    options: {
+        matchAll: false,
+        languages: true,
+        styles: true,
+        locations: true
+    }
 }
 
 export function filters(state = initialFilters, action) {
@@ -97,7 +103,17 @@ export function filters(state = initialFilters, action) {
             })
         case UPDATE_MATCHING_OPTION:
             return Object.assign({}, state, {
-                matchAll: !state.matchAll
+                options: {
+                    ...state.options,
+                    matchAll: !state.options.matchAll
+                }
+            })
+        case EXPAND_FILTER_GROUP:
+            return Object.assign({}, state, {
+                options: {
+                    ...state.options,
+                    [action.group]: !state.options[action.group]
+                }
             })
         default:
             return state
