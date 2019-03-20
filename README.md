@@ -4,7 +4,7 @@ This project will provide access to the Circle of Hope Music Database currently 
 
 *   Authentication - firebase
 *   filters
-    -   add 'match all filters' checkbox
+    -   [DONE]add 'match all filters' checkbox
     -   make filter types collapsable
     -   [DONE] add country, season, and style
 *   Sign up form and profile builder
