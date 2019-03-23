@@ -1,6 +1,7 @@
 import { 
     SELECT_SONG, 
     ADD_SONG, 
+    ADD_TO_SETLIST, 
     UPDATE_STYLES_FILTERS, 
     UPDATE_LOCATIONS_FILTERS, 
     UPDATE_LANGUAGES_FILTERS, 
@@ -48,33 +49,16 @@ export function updateSearch(state = { searchText: '' }, action) {
     }
 }
 
-const initialFilters = {
-    languages: {
-        "English": false,
-        "Hebrew": false,
-        "Arabic": false,
-        "French": false,
-        "Spanish": false
-    },
-    styles: {
-        "Fast": false,
-        "Slow": false,
-        "Meditative": false,
-        "Poetic": false,
-        "Traditional": false
-    },
-    locations: {
-        'Fishtown/Kensington': false,
-        'South Broad': false,
-        'Ridge Ave': false,
-        'Marlton': false
-    },
-    options: {
-        matchAll: false,
-        languages: true,
-        styles: true,
-        locations: true
-    }
+export function setlist(state = [], action) {
+    console.log(action.type)
+    switch (action.type) {
+        case ADD_TO_SETLIST:
+            return [
+                ...state, action.song
+            ]
+        default:
+            return state
+        }
 }
 
 export function filters(state = initialFilters, action) {
@@ -117,5 +101,35 @@ export function filters(state = initialFilters, action) {
             })
         default:
             return state
+    }
+}
+
+
+const initialFilters = {
+    languages: {
+        "English": false,
+        "Hebrew": false,
+        "Arabic": false,
+        "French": false,
+        "Spanish": false
+    },
+    styles: {
+        "Fast": false,
+        "Slow": false,
+        "Meditative": false,
+        "Poetic": false,
+        "Traditional": false
+    },
+    locations: {
+        'Fishtown/Kensington': false,
+        'South Broad': false,
+        'Ridge Ave': false,
+        'Marlton': false
+    },
+    options: {
+        matchAll: false,
+        languages: true,
+        styles: true,
+        locations: true
     }
 }

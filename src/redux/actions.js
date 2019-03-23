@@ -1,11 +1,14 @@
 import { 
     SELECT_SONG, 
     UPDATE_SEARCH,
+
     UPDATE_STYLES_FILTERS,
     UPDATE_LOCATIONS_FILTERS,
     UPDATE_LANGUAGES_FILTERS,
     UPDATE_MATCHING_OPTION,
-    EXPAND_FILTER_GROUP
+    EXPAND_FILTER_GROUP,
+
+    ADD_TO_SETLIST
 } from './actionTypes'
 
 export const selectSong = selectedSongId => {
@@ -26,20 +29,19 @@ export const updateSearch = searchText => {
     }
 }
 
+// FILTERS
 export const updateStylesFilters = filter => {
     return {
         type: UPDATE_STYLES_FILTERS,
         filter
     }
 }
-
 export const updateLocationsFilters = filter => {
     return {
         type: UPDATE_LOCATIONS_FILTERS,
         filter
     }
 }
-
 export const updateLanguagesFilters = filter => {
     return {
         type: UPDATE_LANGUAGES_FILTERS,
@@ -52,11 +54,17 @@ export const updateMatchingOption = () => {
         type: UPDATE_MATCHING_OPTION
     }
 }
-
 export const expandFilterGroup = (group) => {
     return {
         type: EXPAND_FILTER_GROUP,
         group
+    }
+}
+
+export const addToSetlist = (song) => {
+    return {
+        type: ADD_TO_SETLIST,
+        song
     }
 }
 

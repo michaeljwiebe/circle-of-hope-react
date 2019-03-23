@@ -4,15 +4,15 @@ This project will provide access to the Circle of Hope Music Database currently 
 
 *   Authentication - firebase
 *   filters
-    -   [DONE]add 'match all filters' checkbox
-    -   make filter types collapsable
+    -   [DONE] add 'match all filters' checkbox
+    -   [DONE] make filter types collapsable
     -   [DONE] add country, season, and style
+*   song component
+    -   lyrics, music, link to google doc, picture, youtube iframe, setlist count
 *   Sign up form and profile builder
 *   setlist component 
     -   Allow users to create new setlists with their choice of songs
     -   Visible to other users
-*   song component
-    -   lyrics, music, link to google doc, picture, youtube iframe, setlist count
 *   song edits
     -   save separate versions of songs
     -   propose merging changes to original

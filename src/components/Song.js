@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux' 
+
+import { addToSetlist } from '../redux/actions'
 
 class Song extends Component {
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //     }
-    // }
     render() {
         let { title, artist, lyrics } = this.props.songData
+        let { addToSetlist } = this.props
         return (
             <div>
                 <div style={songStyles}>
                     <div style={titleStyle}>
                         {title}<br/>{artist}
                         <div style={buttonStyles.container}>
-                            <div style={{...buttonStyles.standard, ...buttonStyles.one}} onClick={() => {}}>Add To Setlist</div>
-                            <div style={{...buttonStyles.standard, ...buttonStyles.two}} onClick={() => {}}>Suggest Edits</div>
+                            <div 
+                                style={{...buttonStyles.standard, ...buttonStyles.one}} 
+                                onClick={() => {addToSetlist(this.props.songData)}}>
+                                    Add To Setlist
+                            </div>
+                            <div 
+                                style={{...buttonStyles.standard, ...buttonStyles.two}} 
+                                onClick={() => {}}>
+                                    Suggest Edits
+                            </div>
                         </div>
                     </div>
                     <div>{lyrics}</div>
@@ -25,7 +32,12 @@ class Song extends Component {
     }
 }
 
-export default Song
+const mapDispatchToProps = {
+    addToSetlist
+}
+
+export default connect(null, mapDispatchToProps)(Song)
+
 
 
 const songStyles = {

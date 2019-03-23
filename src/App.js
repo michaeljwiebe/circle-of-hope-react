@@ -9,6 +9,7 @@ import List from './components/List'
 import Song from './components/Song'
 import SearchBar from './components/SearchBar'
 import Filters from './components/Filters';
+import Setlist from './components/Setlist';
 
 class App extends Component {
 
@@ -41,6 +42,7 @@ class App extends Component {
                             songs={songs} 
                         />
                         { songRender }
+                        <Setlist />
                     </div>
                 </div>
             </div>
