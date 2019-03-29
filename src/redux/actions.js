@@ -8,8 +8,14 @@ import {
     UPDATE_MATCHING_OPTION,
     EXPAND_FILTER_GROUP,
 
-    ADD_TO_SETLIST
+    ADD_TO_SETLIST,
+    REMOVE_FROM_SETLIST,
+    SONG_ALREADY_ADDED
 } from './actionTypes'
+
+// import { getState } from 'redux'
+
+import store from './store'
 
 export const selectSong = selectedSongId => {
     return { 
@@ -62,8 +68,25 @@ export const expandFilterGroup = (group) => {
 }
 
 export const addToSetlist = (song) => {
+    const  { setlist } = store.getState() // contains previous state
+    const idx = setlist.findIndex(s => {
+        return s.id === song.id
+    })
+    if (idx === -1) {
+        return {
+            type: ADD_TO_SETLIST,
+            song
+        }
+    } else {
+        return {
+            type: SONG_ALREADY_ADDED
+        }
+    }
+}
+
+export const removeFromSetlist = (song) => {
     return {
-        type: ADD_TO_SETLIST,
+        type: REMOVE_FROM_SETLIST,
         song
     }
 }

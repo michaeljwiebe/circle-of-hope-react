@@ -15,7 +15,7 @@ class List extends Component {
             songs = this.filterList(trueFilters)
         }
         return songs.map(song => {
-            return <ListItem {...song} key={song.id} />
+            return <ListItem song={song} isSetlist={false} key={song.id} />
         })
     }
     

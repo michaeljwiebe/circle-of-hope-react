@@ -1,27 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 
-import { addToSetlist } from '../redux/actions'
+import CaptionedButton from './CaptionedButton'
+
+import { 
+    addToSetlist,
+    removeFromSetlist
+} from '../redux/actions'
 
 class Song extends Component {
     render() {
-        let { title, artist, lyrics } = this.props.songData
-        let { addToSetlist } = this.props
+        let { songData } = this.props
+        let { title, artist, lyrics } = songData
+        let { addToSetlist, removeFromSetlist } = this.props
         return (
             <div>
                 <div style={songStyles}>
                     <div style={titleStyle}>
                         {title}<br/>{artist}
                         <div style={buttonStyles.container}>
-                            <div 
+                            <CaptionedButton action={addToSetlist} songData={songData} caption="Add to Setlist" icon="fas fa-plus" />
+                            {/* <div 
                                 style={{...buttonStyles.standard, ...buttonStyles.one}} 
-                                onClick={() => {addToSetlist(this.props.songData)}}>
-                                    Add To Setlist
+                                onClick={() => {addToSetlist(this.props.songData)}}
+                            >
+                                <i className="fas fa-plus" style={buttonStyles.faIcon}></i>
+                                Add to Setlist
+                            </div> */}
+                            <div 
+                                style={{...buttonStyles.standard, ...buttonStyles.two}} 
+                                onClick={() => {}}
+                            >
+                                <i className="far fa-edit" style={buttonStyles.faIcon}></i>
+                                Suggest Edits
                             </div>
                             <div 
                                 style={{...buttonStyles.standard, ...buttonStyles.two}} 
-                                onClick={() => {}}>
-                                    Suggest Edits
+                                onClick={() => {removeFromSetlist(this.props.songData)}}
+                                >
+                                <i className="fas fa-minus-circle" style={buttonStyles.faIcon}></i>
+                                Remove from Setlist
                             </div>
                         </div>
                     </div>
@@ -33,7 +51,8 @@ class Song extends Component {
 }
 
 const mapDispatchToProps = {
-    addToSetlist
+    addToSetlist,
+    removeFromSetlist
 }
 
 export default connect(null, mapDispatchToProps)(Song)
@@ -59,14 +78,26 @@ const buttonStyles = {
 
     },
     standard: {
-        padding: '10px',
-        border: '1px solid black',
-        margin: '10px'
+        padding: '0 10px',
+        // border: '1px solid black',
+        // margin: '10px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        width: '55px',
+        fontSize: '11px',
+        textAlign: 'center',
+        alignItems: 'center'
     },
-    one: {
-        backgroundColor: 'blue'
-    },
-    two: {
-        backgroundColor: 'green'
+    // one: {
+    //     backgroundColor: 'green',
+    //     color: 'white'
+    // },
+    // two: {
+    //     backgroundColor: 'blue',
+    //     color: 'white'
+    // },
+    faIcon: {
+        margin: '0 auto 5px',
+        fontSize: '30px'
     }
 }

@@ -9,9 +9,13 @@ class List extends Component {
 
     renderList() {
         let { setlist } = this.props
-        return setlist.map(song => {
-            return <ListItem {...song} key={song.id} />
-        })
+        console.log('setlist', setlist)
+        if (setlist.length && setlist[0] !== undefined) {
+            return setlist.map(song => {
+                return <ListItem song={song} isSetlist={true} key={song.id} />
+            })
+
+        }
     }
 
     render() {

@@ -2,12 +2,14 @@ import {
     SELECT_SONG, 
     ADD_SONG, 
     ADD_TO_SETLIST, 
+    REMOVE_FROM_SETLIST, 
     UPDATE_STYLES_FILTERS, 
     UPDATE_LOCATIONS_FILTERS, 
     UPDATE_LANGUAGES_FILTERS, 
     UPDATE_SEARCH,
     UPDATE_MATCHING_OPTION,
-    EXPAND_FILTER_GROUP
+    EXPAND_FILTER_GROUP,
+    SONG_ALREADY_ADDED
 } from './actionTypes'
 
 // const initialState = {
@@ -56,6 +58,15 @@ export function setlist(state = [], action) {
             return [
                 ...state, action.song
             ]
+        case REMOVE_FROM_SETLIST:
+            const newState = state.filter(song => {
+                return song.id !== action.song.id
+            })
+            return [
+                ...newState
+            ]
+        case SONG_ALREADY_ADDED:
+            return [...state]
         default:
             return state
         }

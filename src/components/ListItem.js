@@ -5,7 +5,8 @@ import { selectSong } from '../redux/actions'
 class ListItem extends Component {
 
     render() {
-        let { title, artist, id } = this.props
+        let { song } = this.props
+        let { title, artist, id } = song
         return (
             <div 
                 onClick={() => this.props.selectSong(id)}>

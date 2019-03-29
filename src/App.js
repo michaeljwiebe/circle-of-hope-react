@@ -42,8 +42,8 @@ class App extends Component {
                             songs={songs} 
                         />
                         { songRender }
-                        <Setlist />
                     </div>
+                    <Setlist />
                 </div>
             </div>
         )
@@ -62,8 +62,8 @@ const flexContainer = {
 }
 
 const listAndSongContainer = {
-    width: '90%',
-    minWidth: '300px'
+    width: '60%',
+    minWidth: '320px'
 }
 
 
