@@ -9,8 +9,7 @@ import {
     EXPAND_FILTER_GROUP,
 
     ADD_TO_SETLIST,
-    REMOVE_FROM_SETLIST,
-    SONG_ALREADY_ADDED
+    REMOVE_FROM_SETLIST
 } from './actionTypes'
 
 // import { getState } from 'redux'
@@ -68,18 +67,21 @@ export const expandFilterGroup = (group) => {
 }
 
 export const addToSetlist = (song) => {
+    console.log(ADD_TO_SETLIST)
     const  { setlist } = store.getState() // contains previous state
     const idx = setlist.findIndex(s => {
         return s.id === song.id
     })
+    console.log(idx)
     if (idx === -1) {
         return {
             type: ADD_TO_SETLIST,
             song
         }
     } else {
+        console.log('This song was already added')
         return {
-            type: SONG_ALREADY_ADDED
+            type: 'NO ACTION ADDED'
         }
     }
 }

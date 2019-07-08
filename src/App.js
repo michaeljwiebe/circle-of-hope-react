@@ -89,7 +89,7 @@ let songs = [{
     tags: {
         styles: ['Slow', 'Shape Notes'],
         locations: [
-            'Ridge Ave',
+            'Northwest',
             'Marlton',
             'Fishtown/Kensington'
         ],
@@ -138,7 +138,7 @@ let songs = [{
         styles: ['Fast'],
         locations: [
             'South Broad',
-            'Ridge Ave',
+            'Northwest',
             'Marlton',
             'Fishtown/Kensington'
         ],
@@ -155,7 +155,7 @@ let songs = [{
         styles: ['Fast'],
         locations: [
             'South Broad',
-            'Ridge Ave',
+            'Northwest',
             'Marlton',
             'Fishtown/Kensington'
         ],
@@ -185,7 +185,7 @@ let songs = [{
     tags: {
         styles: ['Meditative', 'Contemporary'],
         locations: [
-            'Ridge Ave',
+            'Northwest',
             'Marlton',
             'Fishtown/Kensington'
         ],

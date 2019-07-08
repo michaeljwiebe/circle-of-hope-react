@@ -21,9 +21,13 @@ class List extends Component {
     render() {
         let list = this.renderList()
         return (
-            <div>{list}</div>
+            <div style={setlistStyles}>{list}</div>
         )
     }
+}
+
+const setlistStyles = {
+    width: '180px'
 }
 
 const mapStateToProps = (state, ownProps) => {

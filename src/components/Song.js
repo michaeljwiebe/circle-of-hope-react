@@ -19,28 +19,21 @@ class Song extends Component {
                     <div style={titleStyle}>
                         {title}<br/>{artist}
                         <div style={buttonStyles.container}>
-                            <CaptionedButton action={addToSetlist} songData={songData} caption="Add to Setlist" icon="fas fa-plus" />
-                            {/* <div 
-                                style={{...buttonStyles.standard, ...buttonStyles.one}} 
-                                onClick={() => {addToSetlist(this.props.songData)}}
-                            >
-                                <i className="fas fa-plus" style={buttonStyles.faIcon}></i>
-                                Add to Setlist
-                            </div> */}
-                            <div 
-                                style={{...buttonStyles.standard, ...buttonStyles.two}} 
-                                onClick={() => {}}
-                            >
-                                <i className="far fa-edit" style={buttonStyles.faIcon}></i>
-                                Suggest Edits
-                            </div>
-                            <div 
-                                style={{...buttonStyles.standard, ...buttonStyles.two}} 
-                                onClick={() => {removeFromSetlist(this.props.songData)}}
-                                >
-                                <i className="fas fa-minus-circle" style={buttonStyles.faIcon}></i>
-                                Remove from Setlist
-                            </div>
+                            <CaptionedButton 
+                                action={addToSetlist} 
+                                songData={songData} 
+                                caption="Add to Setlist" 
+                                icon="fas fa-plus" />
+                            <CaptionedButton 
+                                action={()=>console.log('NO ACTION ADDED')} 
+                                songData={songData} 
+                                caption="Suggest Edits" 
+                                icon="far fa-edit" />
+                            <CaptionedButton 
+                                action={removeFromSetlist} 
+                                songData={songData} 
+                                caption="Remove from Setlist" 
+                                icon="fas fa-minus-circle" />
                         </div>
                     </div>
                     <div>{lyrics}</div>

@@ -8,8 +8,7 @@ import {
     UPDATE_LANGUAGES_FILTERS, 
     UPDATE_SEARCH,
     UPDATE_MATCHING_OPTION,
-    EXPAND_FILTER_GROUP,
-    SONG_ALREADY_ADDED
+    EXPAND_FILTER_GROUP
 } from './actionTypes'
 
 // const initialState = {
@@ -65,8 +64,6 @@ export function setlist(state = [], action) {
             return [
                 ...newState
             ]
-        case SONG_ALREADY_ADDED:
-            return [...state]
         default:
             return state
         }
@@ -134,7 +131,7 @@ const initialFilters = {
     locations: {
         'Fishtown/Kensington': false,
         'South Broad': false,
-        'Ridge Ave': false,
+        'Northwest': false,
         'Marlton': false
     },
     options: {

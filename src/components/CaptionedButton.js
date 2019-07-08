@@ -3,7 +3,13 @@ import { connect } from 'react-redux'
 
 class CaptionedButton extends Component {
     render() {
-        let { songData, styles, caption, action, icon } = this.props
+        let { 
+            songData, 
+            styles, 
+            caption, 
+            action, 
+            icon 
+        } = this.props
         return (
             <div
                 style={{ ...buttonStyles.standard, ...styles }}
@@ -43,8 +49,8 @@ const buttonStyles = {
     //     color: 'white'
     // },
     faIcon: {
-        margin: '0 auto 5px',
-        fontSize: '30px'
+        margin: '3px auto',
+        fontSize: '18px'
     }
 }
 
