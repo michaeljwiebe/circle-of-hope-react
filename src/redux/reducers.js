@@ -50,7 +50,6 @@ export function updateSearch(state = { searchText: '' }, action) {
 }
 
 export function setlist(state = [], action) {
-    console.log(action.type)
     switch (action.type) {
         case ADD_TO_SETLIST:
             return [
@@ -62,7 +61,6 @@ export function setlist(state = [], action) {
 }
 
 export function filters(state = initialFilters, action) {
-    // console.log('action.type', action.type)
     switch (action.type) {
         case UPDATE_STYLES_FILTERS:
             return Object.assign({}, state, {
